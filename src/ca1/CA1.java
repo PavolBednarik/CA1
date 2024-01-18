@@ -16,24 +16,29 @@ public class CA1 {
     /**
      * @param args the command line arguments
      */
-    
+    // creating method for reading from file
     public static void fileReading (){
         try {
             BufferedReader br = new BufferedReader(new FileReader("students.txt"));
             String firstLine;
             while ((firstLine = br.readLine()) !=null){
-            String[] nameSurname = firstLine.split(" ");
+            String[] nameSurname = firstLine.split(" ");// splitting first line with String array using single space
             if (nameSurname.length == 2){
                 String name = nameSurname[0];
                 String surname = nameSurname[1];
                 int numClasses = Integer.parseInt(br.readLine());
                 String studNumber = br.readLine();
-                Student student = new Student (name,surname,numClasses,studNumber);
+                Student student = new Student (name,surname,numClasses,studNumber); // creating new student object in loop
+                System.out.println("name: " + student.getName());
+                System.out.println("surname: "+ student.getSurname());
+                System.out.println("number of clases: "+ student.getNumClasses());
+                System.out.println("student number: "+ student.getStudNumber());
             }else {
+                System.out.println("Student information incomplete in file!");
             }    
             }
         } catch (Exception e){
-            System.out.println("invalid data");
+            System.out.println("Wrong format of input!");
         }
     }
     
