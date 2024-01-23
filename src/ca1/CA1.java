@@ -41,6 +41,56 @@ public class CA1 {
             System.out.println("Wrong format of input!");
         }
     }
+    // checking name if there is only letter 
+    public static boolean checkName (String name){
+        return (name.matches("[a-zA-Z]+"));
+    }
+   
+    // checking surname it might contain also numbers
+    public static boolean checkSurname (String surname){
+        return (surname.matches("[a-zA-Z0-9]+"));
+    }
+    
+    // checking if number of classes are between 1 and 8
+    public static boolean checkNumClasses (int numClasses){
+        return numClasses >=1 && numClasses <=8;
+    }
+    //22DIP1123
+    //012345678
+    //checking first 2 numbers in student number if they are numbers
+    public static boolean checkFirst2InStudNumber (String studNumber ){
+        String first2 = studNumber.substring(0, 2);
+        return (first2.matches("[0-9]+"));
+    }
+    
+    // cheking letters in student numbers 
+    public static boolean checkLettersInStudNumber (String studNumber){
+        String letters1 = studNumber.substring(2, 4); // 3 letters in student number
+        String letters2 = studNumber.substring(2, 5); // 4 letters in student number
+        boolean letter = false;
+        if (letters1.matches("[a-zA-Z]+")){
+        if (letters2.matches("[a-zA-Z]+")){
+            letter = true;
+        } else {
+            letter = false;
+        }
+        }
+            return letter;
+    }
+    // checking last numbers in student number deppending of how many letters is in student number
+    public static boolean checkLastNumberInStudNumber (String studNumber){
+        String letters1 = studNumber.substring(2, 4);
+        String letters2 = studNumber.substring(2, 5);
+        int cut = 0;
+        if ( letters1.matches("[a-zA-Z]+")){
+            cut = 4;
+        }
+        if ( letters2.matches("[a-zA-Z]+")){
+            cut = 5;
+        }
+        String numbers = studNumber.substring(cut);
+        return (numbers.matches("[0-9]+")); // checking if they are numbers
+    }
     
     public static void main(String[] args) {
        fileReading ();
