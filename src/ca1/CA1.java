@@ -26,13 +26,20 @@ public class CA1 {
             if (nameSurname.length == 2){
                 String name = nameSurname[0];
                 String surname = nameSurname[1];
-                int numClasses = Integer.parseInt(br.readLine());
+                String classes = br.readLine();
+                int numClasses = 0;
+                try{
+                numClasses = Integer.parseInt(classes);
+                }catch (Exception e){
+                    System.out.println("Number of classes need to be integer");
+                }
                 String studNumber = br.readLine();
                 Student student = new Student (name,surname,numClasses,studNumber); // creating new student object in loop
                 System.out.println("name: " + student.getName());
                 System.out.println("surname: "+ student.getSurname());
                 System.out.println("number of clases: "+ student.getNumClasses());
                 System.out.println("student number: "+ student.getStudNumber());
+            //checking if is validation correct 
             if (validateStudentInput(student)) {
             student.workload = workload(student.getNumClasses());
                 System.out.println(student.workload);
