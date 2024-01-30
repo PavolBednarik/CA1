@@ -15,6 +15,7 @@ public class Student {
     private String surname;
     private int numClasses;
     private String studNumber;
+    public String workload; // adding workload into student class
 
     public Student(String name, String surname, int numClasses, String studNumber) {
         this.name = name;

@@ -33,6 +33,11 @@ public class CA1 {
                 System.out.println("surname: "+ student.getSurname());
                 System.out.println("number of clases: "+ student.getNumClasses());
                 System.out.println("student number: "+ student.getStudNumber());
+            if (validateStudentInput(student)) {
+            student.workload = workload(student.getNumClasses());
+                System.out.println(student.workload);
+            }
+            
             }else {
                 System.out.println("Student information incomplete in file!");
             }    
@@ -120,7 +125,18 @@ public class CA1 {
         }
         return true;
     }
-    
+    // create workload method for calculation workload
+     public static String workload(int numClasses) {
+        if (numClasses == 1) {
+            return "Very Light";
+        } else if (numClasses == 2) {
+            return "Light";
+        } else if (numClasses >= 3 && numClasses <= 5) {
+            return "Part Time";
+        } else {
+            return "Full Time";
+        }
+    }     
     
     public static void main(String[] args) {
        fileReading ();
