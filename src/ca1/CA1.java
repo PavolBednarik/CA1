@@ -92,6 +92,36 @@ public class CA1 {
         return (numbers.matches("[0-9]+")); // checking if they are numbers
     }
     
+    // validating student number and writing usefull messages
+    public static boolean validateStudentInput (Student student){
+        if (!checkName (student.getName())){
+            System.out.println("Incorect name format! Name can contain letters only.");
+            return false;
+        }
+        if (!checkSurname (student.getSurname())){
+            System.out.println("Incorect surname format! Surname can cotain letters and numbers.");
+            return false;
+        }
+        if (!checkNumClasses (student.getNumClasses())){
+            System.out.println("Incorect number of classes! Number of classes need to be between 1 and 8.");
+            return false;
+        }
+        if (!checkFirst2InStudNumber (student.getStudNumber())){
+            System.out.println("Incorect student number format! First 2 characters in student number need to be numbers only.");
+            return false;
+        }
+        if (!checkLettersInStudNumber (student.getStudNumber())){
+            System.out.println("Incorect student number format! Next characters after 2 numbers could have lenght 3 or 4 and neet to contain letters only.");
+            return false;
+        }
+        if (!checkLastNumberInStudNumber (student.getStudNumber())){
+            System.out.println("Incorect student number format! Last characters in student number need to be numbers only.");
+            return false;
+        }
+        return true;
+    }
+    
+    
     public static void main(String[] args) {
        fileReading ();
     }
