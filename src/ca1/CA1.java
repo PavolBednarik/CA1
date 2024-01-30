@@ -5,7 +5,9 @@
 package ca1;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 
 /**
  *
@@ -31,7 +33,7 @@ public class CA1 {
                 try{
                 numClasses = Integer.parseInt(classes);
                 }catch (Exception e){
-                    System.out.println("Number of classes need to be integer");
+                    System.out.println("Number of classes need to be integer.");
                 }
                 String studNumber = br.readLine();
                 Student student = new Student (name,surname,numClasses,studNumber); // creating new student object in loop
@@ -43,6 +45,16 @@ public class CA1 {
             if (validateStudentInput(student)) {
             student.workload = workload(student.getNumClasses());
                 System.out.println(student.workload);
+                try{
+                BufferedWriter bw = new BufferedWriter (new FileWriter ("status.txt"));
+                bw.write(student.getStudNumber() + " - " + student.getSurname());
+                bw.newLine();
+                bw.write(student.workload);
+                bw.newLine();
+                bw.close();
+                }catch (Exception e){
+                    System.out.println(e);
+                }
             }
             
             }else {
