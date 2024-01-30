@@ -19,7 +19,7 @@ public class CA1 {
      * @param args the command line arguments
      */
     // creating method for reading from file
-    public static void fileReading (){
+    public static void fileReadingWriting (){
         try {
             BufferedReader br = new BufferedReader(new FileReader("students.txt"));
             String firstLine;
@@ -45,17 +45,8 @@ public class CA1 {
             if (validateStudentInput(student)) {
             student.workload = workload(student.getNumClasses());
                 System.out.println(student.workload);
-                // creating BufferedWriter to write validate input to status.txt file
-                try{
-                BufferedWriter bw = new BufferedWriter (new FileWriter ("status.txt", true));
-                bw.write(student.getStudNumber() + " - " + student.getSurname());
-                bw.newLine();
-                bw.write(student.workload);
-                bw.newLine();
-                bw.close();
-                }catch (Exception e){
-                    System.out.println(e);
-                }
+            // calling fileWritting method
+            fileWritting(student, student.workload);
             }
             
             }else {
@@ -146,7 +137,7 @@ public class CA1 {
         return true;
     }
     // create workload method for calculation workload
-     public static String workload(int numClasses) {
+    public static String workload(int numClasses) {
         if (numClasses == 1) {
             return "Very Light";
         } else if (numClasses == 2) {
@@ -157,9 +148,22 @@ public class CA1 {
             return "Full Time";
         }
     }     
+    // creating seperate fileWritting method
+    public static void fileWritting (Student student, String workload){
+    try{
+        BufferedWriter bw = new BufferedWriter (new FileWriter ("status.txt", true));
+        bw.write(student.getStudNumber() + " - " + student.getSurname());
+        bw.newLine();
+        bw.write(student.workload);
+        bw.newLine();
+        bw.close();
+    }catch (Exception e){
+        System.out.println(e);
+       }
+    }
     
     public static void main(String[] args) {
-       fileReading ();
+       fileReadingWriting ();
     }
     
 }
