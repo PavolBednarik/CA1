@@ -45,8 +45,9 @@ public class CA1 {
             if (validateStudentInput(student)) {
             student.workload = workload(student.getNumClasses());
                 System.out.println(student.workload);
+                // creating BufferedWriter to write validate input to status.txt file
                 try{
-                BufferedWriter bw = new BufferedWriter (new FileWriter ("status.txt"));
+                BufferedWriter bw = new BufferedWriter (new FileWriter ("status.txt", true));
                 bw.write(student.getStudNumber() + " - " + student.getSurname());
                 bw.newLine();
                 bw.write(student.workload);
