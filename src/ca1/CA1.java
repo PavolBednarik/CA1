@@ -13,6 +13,7 @@ import java.util.Scanner;
 /**
  *
  * @author pavol
+ * https://github.com/PavolBednarik/CA1.git
  * 
  */
 public class CA1 {
@@ -73,8 +74,7 @@ public class CA1 {
     public static boolean checkNumClasses (int numClasses){
         return numClasses >=1 && numClasses <=8;
     }
-    //22DIP1123
-    //012345678
+   
     //checking first 2 numbers in student number if they are numbers
     public static boolean checkFirst2InStudNumber (String studNumber ){
         String first2 = studNumber.substring(0, 2);
