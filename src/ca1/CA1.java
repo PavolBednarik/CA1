@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.Scanner;
 
 /**
  *
@@ -174,7 +175,49 @@ public class CA1 {
     }
     
     public static void main(String[] args) {
-       fileReadingWriting ();
+       menu();
     }
+    // creating menu 
+    public static void menu(){
+        Scanner sc = new Scanner(System.in);
+            System.out.println("Enter operation:");
+            System.out.println("1. Standard operation");
+            System.out.println("2. Add another student");
+        int choice = sc.nextInt();
+        sc.nextLine();
+        try {
+            if (choice == 1){
+                fileReadingWriting ();  
+            }else if (choice == 2){
+                System.out.println("Enter student name:");
+                String name = sc.nextLine();
+                System.out.println("Enter student surname:");
+                String surname = sc.nextLine();
+                System.out.println("Enter number of classes:");
+                String classes = sc.nextLine();
+                int numClasses = 0;
+                try{
+                    numClasses = Integer.parseInt(classes);
+                }catch (Exception e){
+                    System.out.println("Number of classes need to be integer");
+                }
+                System.out.println("Student student number:");
+                String studNumber = sc.nextLine();
+                Student student1 = new Student (name,surname,numClasses,studNumber);
+                    if (validateStudentInput(student1)) {
+                        student1.workload = workload(student1.getNumClasses());
+                        System.out.println(student1.workload);
+                        fileWriting(student1, student1.workload);
+                    } else {
+                        System.out.println("Invalid studen input, data will not be safed in file");
+                    }
+            }else{
+                System.out.println("Enter your operation 1 or 2");
+            }
+        sc.close();
+        }catch (Exception e){
+        System.out.println(e);
+        }
     
+    }
 }
