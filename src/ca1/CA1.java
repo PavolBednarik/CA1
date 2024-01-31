@@ -13,6 +13,7 @@ import java.util.Scanner;
 /**
  *
  * @author pavol
+ * 
  */
 public class CA1 {
 
@@ -177,47 +178,54 @@ public class CA1 {
     public static void main(String[] args) {
        menu();
     }
-    // creating menu 
+    // creating menu with 3 choices
     public static void menu(){
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);// using scanner to get information 
+        while (true){//adding loop untill is not presed choice number 3
             System.out.println("Enter operation:");
             System.out.println("1. Standard operation");
             System.out.println("2. Add another student");
-        int choice = sc.nextInt();
-        sc.nextLine();
-        try {
-            if (choice == 1){
-                fileReadingWriting ();  
-            }else if (choice == 2){
-                System.out.println("Enter student name:");
-                String name = sc.nextLine();
-                System.out.println("Enter student surname:");
-                String surname = sc.nextLine();
-                System.out.println("Enter number of classes:");
-                String classes = sc.nextLine();
-                int numClasses = 0;
-                try{
-                    numClasses = Integer.parseInt(classes);
-                }catch (Exception e){
-                    System.out.println("Number of classes need to be integer");
-                }
-                System.out.println("Student student number:");
-                String studNumber = sc.nextLine();
-                Student student1 = new Student (name,surname,numClasses,studNumber);
-                    if (validateStudentInput(student1)) {
-                        student1.workload = workload(student1.getNumClasses());
-                        System.out.println(student1.workload);
-                        fileWriting(student1, student1.workload);
-                    } else {
-                        System.out.println("Invalid studen input, data will not be safed in file");
+            System.out.println("3. Exit program");
+            try {
+                int choice = sc.nextInt();
+                sc.nextLine();
+                if (choice == 1){// proces information from file
+                    fileReadingWriting ();  
+                }else if (choice == 2){// proces information via console
+                    System.out.println("Enter student name:");
+                    String name = sc.nextLine();
+                    System.out.println("Enter student surname:");
+                    String surname = sc.nextLine();
+                    System.out.println("Enter number of classes:");
+                    String classes = sc.nextLine();
+                    int numClasses = 0;
+                    try{
+                        numClasses = Integer.parseInt(classes);
+                    }catch (Exception e){
+                        System.out.println("Number of classes need to be integer.");
                     }
-            }else{
-                System.out.println("Enter your operation 1 or 2");
-            }
-        sc.close();
-        }catch (Exception e){
-        System.out.println(e);
-        }
-    
+                    System.out.println("Student student number:");
+                    String studNumber = sc.nextLine();
+                    Student student1 = new Student (name,surname,numClasses,studNumber);
+                        if (validateStudentInput(student1)) {
+                            student1.workload = workload(student1.getNumClasses());
+                            System.out.println(student1.workload);
+                            fileWriting(student1, student1.workload);
+                            System.out.println("Student sucesfully added to file.");
+                        } else {
+                            System.out.println("Invalid studen input, data will not be safed in file.");
+                        }
+                }else if (choice == 3){// closing loop and program
+                    System.out.println("Exiting program");
+                    break;
+                }else{
+                    System.out.println("Invalid operation! Enter choice 1, 2 or 3");
+                }
+
+            }catch (Exception e){
+                System.out.println("Invalid operation! Enter choice 1, 2 or 3");
+                sc.nextLine();
+            } 
+        }  
     }
 }
