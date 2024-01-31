@@ -78,6 +78,7 @@ public class CA1 {
         String first2 = studNumber.substring(0, 2);
         return (first2.matches("[0-9]+"));
     }
+    // checking if first 2 numbers are greater or equal to year 2020
     public static boolean checkFirst2year(String studNumber ){
         String first2 = studNumber.substring(0, 2);
         return Integer.parseInt(first2)>=20;
@@ -108,7 +109,10 @@ public class CA1 {
             cut = 5;
         }
         String numbers = studNumber.substring(cut);
-        return (numbers.matches("[0-9]+")); // checking if they are numbers
+        return (numbers.matches("[0-9]+")) &&
+               Integer.parseInt(numbers) >=1 &&
+               Integer.parseInt(numbers) <= 200;
+        // Checking if last numbers are numbers between 1 and 200
     }
     
     // validating student number and writing usefull messages
@@ -138,7 +142,7 @@ public class CA1 {
             return false;
         }
         if (!checkLastNumberInStudNumber (student.getStudNumber())){
-            System.out.println("Incorect student number format! Last characters in student number need to be numbers only.");
+            System.out.println("Incorect student number format! Last characters in student number need to be numbers between 1 and 200.");
             return false;
         }
         return true;
@@ -159,7 +163,7 @@ public class CA1 {
     public static void fileWriting (Student student, String workload){
     try{
         BufferedWriter bw = new BufferedWriter (new FileWriter ("status.txt", true));
-        bw.write(student.getStudNumber() + " - " + student.getSurname());
+        bw.write(student.getStudNumber() + "-" + student.getSurname());
         bw.newLine();
         bw.write(student.workload);
         bw.newLine();
