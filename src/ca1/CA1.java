@@ -46,7 +46,7 @@ public class CA1 {
             student.workload = workload(student.getNumClasses());
                 System.out.println(student.workload);
             // calling fileWritting method
-            fileWritting(student, student.workload);
+            fileWriting(student, student.workload);
             }
             
             }else {
@@ -78,7 +78,10 @@ public class CA1 {
         String first2 = studNumber.substring(0, 2);
         return (first2.matches("[0-9]+"));
     }
-    
+    public static boolean checkFirst2year(String studNumber ){
+        String first2 = studNumber.substring(0, 2);
+        return Integer.parseInt(first2)>=20;
+    }
     // cheking letters in student numbers 
     public static boolean checkLettersInStudNumber (String studNumber){
         String letters1 = studNumber.substring(2, 4); // 3 letters in student number
@@ -126,6 +129,10 @@ public class CA1 {
             System.out.println("Incorect student number format! First 2 characters in student number need to be numbers only.");
             return false;
         }
+        if (!checkFirst2year (student.getStudNumber())){
+            System.out.println("Incorect student number format! Year in student number need to be greater or equal then 2020.");
+            return false;
+        }
         if (!checkLettersInStudNumber (student.getStudNumber())){
             System.out.println("Incorect student number format! Next characters after 2 numbers could have lenght 3 or 4 and neet to contain letters only.");
             return false;
@@ -148,8 +155,8 @@ public class CA1 {
             return "Full Time";
         }
     }     
-    // creating seperate fileWritting method
-    public static void fileWritting (Student student, String workload){
+    // creating seperate fileWriting method
+    public static void fileWriting (Student student, String workload){
     try{
         BufferedWriter bw = new BufferedWriter (new FileWriter ("status.txt", true));
         bw.write(student.getStudNumber() + " - " + student.getSurname());
